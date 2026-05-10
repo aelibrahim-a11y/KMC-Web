@@ -20,8 +20,8 @@ export default function About() {
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center mb-24">
             <span className="eyebrow justify-center mb-8">The Founder</span>
-            <h1 className="text-6xl md:text-8xl text-ink mb-6">Eng. Kassem Mansour</h1>
-            <p className="font-display italic text-blue text-2xl">Founder & Senior Architect · Since 1971</p>
+            <h1 className="text-5xl md:text-8xl text-ink mb-6">Eng. Kassem Mansour</h1>
+            <p className="font-display italic text-blue text-xl md:text-2xl">Founder & Senior Architect · Since 1971</p>
           </div>
           
           <div className="aspect-video relative overflow-hidden rounded-sm mb-32 shadow-2xl">
@@ -31,9 +31,9 @@ export default function About() {
               className="w-full h-full object-cover grayscale brightness-50"
               referrerPolicy="no-referrer"
             />
-            <div className="absolute inset-0 flex items-center justify-center p-12">
+            <div className="absolute inset-0 flex items-center justify-center p-6 md:p-12">
                <div className="text-center text-white max-w-2xl">
-                <p className="font-display italic text-3xl md:text-4xl mb-4">"Waterproofing is the silent half of architecture. It is invisible when done perfectly, and catastrophic when ignored."</p>
+                <p className="font-display italic text-lg md:text-4xl mb-4 leading-tight md:leading-normal">"Waterproofing is the silent half of architecture. It is invisible when done perfectly, and catastrophic when ignored."</p>
                </div>
             </div>
           </div>

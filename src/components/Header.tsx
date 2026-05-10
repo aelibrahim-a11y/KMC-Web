@@ -43,7 +43,7 @@ export default function Header() {
             alt="KMC | Kassem Mansour Co." 
             className={cn(
               "transition-all duration-500 w-auto object-contain",
-              isScrolled ? "h-20 md:h-24" : "h-32 md:h-48 drop-shadow-[0_2px_10px_rgba(31,42,51,0.1)]"
+              isScrolled ? "h-12 md:h-16" : "h-20 md:h-28 drop-shadow-[0_2px_10px_rgba(31,42,51,0.1)]"
             )} 
           />
         </Link>
@@ -90,7 +90,7 @@ export default function Header() {
             className="fixed inset-0 z-[200] bg-paper flex flex-col p-8"
           >
             <div className="flex justify-between items-center mb-16">
-              <img src="/logo_full.webp" alt="KMC" className="h-24 w-auto" />
+              <img src="/logo_full.webp" alt="KMC" className="h-16 w-auto" />
               <button onClick={() => setIsMobileMenuOpen(false)} className="text-ink">
                 <X size={32} />
               </button>

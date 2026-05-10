@@ -10,7 +10,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-24">
           <div className="col-span-1 md:col-span-1">
             <Link to="/" className="mb-8 block">
-              <img src="/KMC.webp" alt="KMC" className="h-28 w-auto" />
+              <img src="/logo_full.webp" alt="KMC" className="h-20 w-auto" />
             </Link>
             <p className="text-ink-soft text-sm leading-relaxed max-w-xs">
               Architect-led waterproofing consultancy and application. Setting the standard in Lebanon since 1971.
