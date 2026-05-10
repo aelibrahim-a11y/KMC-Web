@@ -15,8 +15,12 @@ async function startServer() {
   const app = express();
   const PORT = 3000;
 
+  const isProduction = process.env.NODE_ENV === "production" || process.env.VITE_PROD === "true";
+
+  console.log(`Starting server in ${isProduction ? "production" : "development"} mode...`);
+
   // Handle Vite middleware in development
-  if (process.env.NODE_ENV !== "production") {
+  if (!isProduction) {
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: "spa",
@@ -24,11 +28,14 @@ async function startServer() {
     app.use(vite.middlewares);
   } else {
     // Production: serve static files
-    const distPath = path.join(process.cwd(), "dist");
+    const distPath = path.resolve(__dirname, "dist");
+    
+    console.log(`Serving static files from: ${distPath}`);
     app.use(express.static(distPath));
     
     // SPA Fallback: send index.html for any unknown routes
     app.get("*", (req, res) => {
+      console.log(`SPA fallback: ${req.url} -> index.html`);
       res.sendFile(path.join(distPath, "index.html"));
     });
   }
