@@ -47,16 +47,22 @@ export default function Sectors() {
         </div>
       </section>
 
-      {/* Full-bleed texture section */}
-      <section className="h-[50vh] relative overflow-hidden flex items-center justify-center">
-         <img 
-            src="https://images.unsplash.com/photo-1590374182967-33a9dbba0688?q=80&w=2400" 
-            alt="Close up of concrete"
-            className="absolute inset-0 w-full h-full object-cover grayscale opacity-20"
-            referrerPolicy="no-referrer"
-         />
-         <div className="container-custom relative z-10 text-center">
-            <h2 className="font-display italic text-4xl md:text-6xl text-ink-2">Standardization across industries.</h2>
+      {/* Full-bleed texture section (Imageless blueprint design) */}
+      <section className="py-32 relative overflow-hidden flex items-center justify-center bg-blue-mist border-t border-blue-soft/30">
+         <div className="absolute inset-0 z-0 opacity-[0.05] pointer-events-none">
+           <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+             <defs>
+               <pattern id="diagonalGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+                 <path d="M 0 40 L 40 0 M 0 0 L 40 40" fill="none" stroke="currentColor" strokeWidth="1"/>
+               </pattern>
+             </defs>
+             <rect width="100%" height="100%" fill="url(#diagonalGrid)" />
+           </svg>
+         </div>
+         <div className="container-custom relative z-10 text-center px-6">
+            <span className="text-[10px] font-mono font-bold uppercase tracking-[0.4em] text-blue mb-4 block">Universal Applicability</span>
+            <h2 className="font-display italic text-4xl md:text-6xl text-ink font-semibold">Standardization across all engineering domains.</h2>
+            <div className="w-16 h-[2px] bg-gold mx-auto mt-8" />
          </div>
       </section>
     </motion.div>
