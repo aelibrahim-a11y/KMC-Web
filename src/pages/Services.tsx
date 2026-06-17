@@ -1,5 +1,7 @@
 import { motion } from "motion/react";
 import { cn } from "@/src/lib/utils";
+import BlueprintDiagram from "@/src/components/BlueprintDiagram";
+import ForensicDiagnostic from "@/src/components/ForensicDiagnostic";
 
 const services = [
   {
@@ -49,7 +51,7 @@ const methodology = [
 const systems = [
   { title: "Bituminous membranes", desc: "High-load torch-applied systems for foundations and roofs." },
   { title: "Self-adhered bituminous", desc: "Cold-applied redundancy for sensitive industrial zones." },
-  { title: "Liquid-applied", desc: "Seamless cold-roofing and detail-heavy remediation." },
+  { title: "Sika Tiles", desc: "Seamless cold-roofing and detail-heavy remediation." },
   { title: "PVC & TPO", desc: "UV-stable large-scale roof gardens and thermal systems." },
   { title: "Bentonite", desc: "Self-healing subterranean protection for high groundwater." },
   { title: "Crystalline", desc: "Internal penetrative moisture barriers for concrete." },
@@ -164,6 +166,40 @@ export default function Services() {
                <div className="absolute top-[-10%] right-[-10%] w-64 h-64 bg-blue opacity-10 blur-3xl" />
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Structural Blueprints Subsection */}
+      <section className="py-24 bg-paper-2 border-t border-blue-soft/20">
+        <div className="container-custom">
+          <div className="max-w-3xl mb-16">
+            <span className="eyebrow mb-6">Technical Architecture</span>
+            <h2 className="text-4xl md:text-6xl text-ink mb-6">
+              Interactive Assembly Blueprints
+            </h2>
+            <p className="text-ink-soft text-lg leading-relaxed">
+              Explore the structural assembly sequences designed to contain heavy hydrostatic loads. Toggle across Type A, B, or C under BS 8102 regulations, and select individual substrate blocks to inspect material metrics.
+            </p>
+          </div>
+          
+          <BlueprintDiagram />
+        </div>
+      </section>
+
+      {/* Forensic Diagnostics Section */}
+      <section className="py-24 bg-paper border-t border-blue-soft/20">
+        <div className="container-custom">
+          <div className="max-w-3xl mb-16">
+            <span className="eyebrow mb-6">Forensic Engineering</span>
+            <h2 className="text-4xl md:text-6xl text-ink mb-6">
+              Leak Diagnostic Tool
+            </h2>
+            <p className="text-ink-soft text-lg leading-relaxed">
+              Facing active water seepage, capillary rise, or structural degradation? Run our forensic evaluator to identify structural vulnerabilities and receive a customized prescriptive intervention.
+            </p>
+          </div>
+          
+          <ForensicDiagnostic />
         </div>
       </section>
     </motion.div>

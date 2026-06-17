@@ -53,8 +53,14 @@ export function parseProjectsCSV(text: string): Project[] {
         year: row[2].replace(/^"|"$/g, "").trim() || "N/A",
         sector: row[3].replace(/^"|"$/g, "").trim() || "Commercial",
         area_m2: isNaN(areaVal as number) ? null : areaVal,
-        system: row[5].replace(/^"|"$/g, "").trim() || "Waterproofing",
-        scope_raw: row[6].replace(/^"|"$/g, "").trim() || "",
+        system: row[5].replace(/^"|"$/g, "").trim()
+          .replace(/sika liquid-applied/gi, "Sika Tiles applied")
+          .replace(/sika liquid/gi, "Sika Tiles")
+          .replace(/liquid sika/gi, "Sika Tiles") || "Waterproofing",
+        scope_raw: row[6].replace(/^"|"$/g, "").trim()
+          .replace(/sika liquid-applied/gi, "Sika Tiles applied")
+          .replace(/sika liquid/gi, "Sika Tiles")
+          .replace(/liquid sika/gi, "Sika Tiles") || "",
         client_ref: row[7].replace(/^"|"$/g, "").trim() || ""
       });
     }

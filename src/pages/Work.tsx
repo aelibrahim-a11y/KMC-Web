@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { Search, ChevronDown, ChevronUp, FileSpreadsheet, ShieldCheck, MapPin, HardHat, Calendar, SquareStack, Layers } from "lucide-react";
 import { cn } from "@/src/lib/utils";
 import { parseProjectsCSV, Project, computeProjectStats } from "@/src/utils/projectParser";
+import LebanonMap from "@/src/components/LebanonMap";
 
 export default function Work() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -84,14 +85,14 @@ export default function Work() {
               </h1>
             </div>
             
-            <div className="grid grid-cols-2 gap-12 border-l border-blue-soft/30 pl-8 max-w-sm">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-12 border-l border-blue-soft/30 pl-6 sm:pl-8 max-w-md w-full shrink-0">
               <div>
-                <span className="text-[10px] uppercase tracking-widest text-ink-faint font-bold block mb-1">Total Monitored Projects</span>
-                <span className="font-mono text-3xl font-bold text-ink">{loading ? "..." : projects.length} Active Records</span>
+                <span className="text-[10px] uppercase tracking-widest text-ink-faint font-bold block mb-1 whitespace-nowrap">Total Monitored Projects</span>
+                <span className="font-mono text-xl sm:text-2xl md:text-3xl font-bold text-ink whitespace-nowrap block">{loading ? "..." : `${projects.length} Records`}</span>
               </div>
               <div>
-                <span className="text-[10px] uppercase tracking-widest text-ink-faint font-bold block mb-1">Total Insulated Area</span>
-                <span className="font-mono text-3xl font-bold text-blue">
+                <span className="text-[10px] uppercase tracking-widest text-ink-faint font-bold block mb-1 whitespace-nowrap">Total Insulated Area</span>
+                <span className="font-mono text-xl sm:text-2xl md:text-3xl font-bold text-blue whitespace-nowrap block">
                   {loading ? "..." : `${stats.totalArea.toLocaleString()} m²`}
                 </span>
               </div>
@@ -103,6 +104,13 @@ export default function Work() {
             We maintain structured design files and inspection records for our entire portfolio, operating without the distraction of 
             generic photography to present pure waterproofing credentials.
           </p>
+        </div>
+      </section>
+
+      {/* Stylized Lebanon District Cluster Map */}
+      <section className="py-12 bg-paper-2 border-b border-blue-mist">
+        <div className="container-custom">
+          <LebanonMap projects={projects} />
         </div>
       </section>
 
@@ -144,7 +152,7 @@ export default function Work() {
       </section>
 
       {/* Ledger Records Table/Grid */}
-      <section className="py-16">
+      <section id="project-ledger-list" className="py-16">
         <div className="container-custom">
           {loading ? (
             <div className="py-24 text-center">
@@ -190,53 +198,58 @@ export default function Work() {
                         isExpanded ? "bg-blue-mist-soft shadow-inner" : "hover:bg-paper-2"
                       )}
                     >
-                      {/* Main row heading */}
+                      {/* Main row heading with robust mobile-first layouts */}
                       <div 
                         onClick={() => toggleExpandProject(project.id)}
-                        className="grid grid-cols-1 md:grid-cols-12 gap-4 py-6 px-6 md:px-8 items-center cursor-pointer select-none"
+                        className="flex flex-col md:grid md:grid-cols-12 gap-4 md:gap-4 py-6 px-6 md:px-8 items-start md:items-center cursor-pointer select-none"
                       >
                         {/* Year */}
-                        <div className="col-span-1 flex items-center gap-3">
-                          <Calendar className="w-4 h-4 text-blue/60 md:hidden" />
-                          <span className="font-mono text-sm font-bold text-ink leading-none">{project.year}</span>
-                        </div>
-
-                        {/* Name and Location */}
-                        <div className="col-span-1 md:col-span-4 pr-4">
-                          <h4 className="font-display text-md text-ink group-hover:text-blue font-bold transition-colors leading-tight mb-1">
-                            {project.name}
-                          </h4>
-                          <span className="text-xs text-ink-soft flex items-center gap-1">
-                            <MapPin className="w-3.5 h-3.5 shrink-0 text-gold-soft" />
-                            {project.location}
+                        <div className="md:col-span-1 flex items-center gap-2">
+                          <Calendar className="w-3.5 h-3.5 text-blue/60 md:hidden" />
+                          <span className="font-mono text-[11px] sm:text-xs md:text-sm font-black text-blue md:text-ink bg-blue/10 md:bg-transparent px-2.5 py-0.5 md:p-0 rounded-sm border border-blue-soft/30 md:border-0 leading-none block">
+                            {project.year}
                           </span>
                         </div>
 
+                        {/* Name and Location */}
+                        <div className="md:col-span-4 pr-0 md:pr-4 w-full">
+                          <h4 className="font-display text-base sm:text-[17px] md:text-base text-ink group-hover:text-blue font-bold transition-colors leading-tight mb-1">
+                            {project.name}
+                          </h4>
+                          <div className="text-xs text-ink-soft flex items-center gap-1">
+                            <MapPin className="w-3.5 h-3.5 shrink-0 text-gold-soft" />
+                            <span>{project.location}</span>
+                          </div>
+                        </div>
+
                         {/* Sector badge */}
-                        <div className="col-span-2 flex items-center">
+                        <div className="md:col-span-2 flex items-center">
                           <span className="px-2.5 py-1 bg-paper border border-blue-soft/30 text-ink-soft text-[9px] font-bold uppercase tracking-wider rounded-sm shrink-0">
                             {project.sector}
                           </span>
                         </div>
 
                         {/* Area */}
-                        <div className="col-span-2 text-left md:text-right">
-                          <span className="font-mono text-xs font-medium text-ink flex md:block items-center gap-2">
-                            <span className="text-[10px] uppercase font-bold text-ink-faint md:hidden">Area: </span>
-                            {project.area_m2 ? `${project.area_m2.toLocaleString()} m²` : "—"}
+                        <div className="md:col-span-2 text-left md:text-right w-full">
+                          <span className="font-mono text-xs font-semibold text-ink flex md:block items-center gap-2">
+                            <span className="text-[10px] uppercase font-bold text-ink-faint md:hidden">Area:</span>
+                            <span>{project.area_m2 ? `${project.area_m2.toLocaleString()} m²` : "—"}</span>
                           </span>
                         </div>
 
                         {/* System Summary */}
-                        <div className="col-span-3 flex items-center justify-between gap-4">
-                          <span className="text-xs text-ink-soft truncate pr-4 max-w-[200px]" title={project.system}>
-                            {project.system}
-                          </span>
+                        <div className="md:col-span-3 flex items-center justify-between gap-4 w-full">
+                          <div className="flex flex-col md:block truncate pr-2">
+                            <span className="text-[10px] uppercase font-bold text-ink-faint md:hidden mb-0.5">System Spec:</span>
+                            <span className="text-xs text-ink-soft truncate md:max-w-[200px]" title={project.system}>
+                              {project.system}
+                            </span>
+                          </div>
                           
                           {/* Chevron icon indicating expansion */}
-                          <button className="p-1 rounded-full text-ink-faint group-hover:text-blue transition-colors shrink-0">
-                            {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-                          </button>
+                          <div className="p-1.5 rounded-full bg-blue/5 border border-blue-soft/20 text-ink-faint group-hover:text-blue transition-colors shrink-0 flex items-center justify-center">
+                            {isExpanded ? <ChevronUp size={15} /> : <ChevronDown size={15} />}
+                          </div>
                         </div>
                       </div>
 

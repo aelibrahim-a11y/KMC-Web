@@ -33,9 +33,14 @@ const AnimatedCounter = ({ value, target, suffix = "" }: { value: number; target
   }, [isInView, target]);
 
   return (
-    <div ref={ref} className="text-center">
-      <div className="font-display text-5xl md:text-6xl text-blue mb-2 font-bold select-none">
-        {count.toLocaleString()}{suffix}
+    <div ref={ref} className="text-center w-full">
+      <div className="font-display text-3xl sm:text-4xl md:text-5xl text-blue mb-2 font-bold select-none whitespace-nowrap flex items-baseline justify-center gap-1">
+        <span>{count.toLocaleString()}</span>
+        {suffix && (
+          <span className="text-lg sm:text-xl md:text-2xl font-semibold text-blue/85">
+            {suffix.trim()}
+          </span>
+        )}
       </div>
     </div>
   );
@@ -46,15 +51,15 @@ const CLIENTS_PARTNERS = [
   { name: "American University of Beirut (AUB)", subtitle: "Historic Campus Maintenance", role: "Remediation & Roof Preservations" },
   { name: "AUBMC Medical Center", subtitle: "Halim & Aida Daniel Center", role: "Basement Waterproofing Systems" },
   { name: "Ministry of Public Works", subtitle: "National Courts of Justice", role: "Beirut, Tripoli, and Zahleh Palaces of Justice" },
-  { name: "Régie Liban (Government)", subtitle: "Industrial Manufacturing Complexes", role: "Large-scale Liquid Sika Membranes" },
+  { name: "Régie Liban (Government)", subtitle: "Industrial Manufacturing Complexes", role: "Large-scale Sika Tiles Membranes" },
   { name: "Arab Bank Group", subtitle: "Central Processing Headquarters", role: "Double Redundant Subterranean Protection" },
   { name: "Bank Med", subtitle: "Administrative & Local Branch Networks", role: "Terrace Gardens & TPO Membranes" },
   { name: "Bank of Beirut", subtitle: "National Branch Facilities", role: "Joint Sealing and Standard Specification Audits" },
   { name: "Banque Libano Française", subtitle: "Kantari Headquarters", role: "Steiger Envelope Weatherproofing" },
   { name: "Dar El Aytam Al Islamiyah", subtitle: "Orphanage Institutional Facilities", role: "Aramoun, Chamlan, and Bir Hassan Roof Repairs" },
-  { name: "Ferrari Showroom (Al Sharakeh)", subtitle: "Jisr Al Watih Retail Complex", role: "Sika Liquid Applied System" },
+  { name: "Ferrari Showroom (Al Sharakeh)", subtitle: "Jisr Al Watih Retail Complex", role: "Sika Tiles System" },
   { name: "Ecole Nazareth", subtitle: "Achrafieh Educational Complex", role: "High-spec Roof Membrane Envelopes" },
-  { name: "Ecole Besancon", subtitle: "Baskinta Historic Campus", role: "Liquid Membranes & Mastic Joint Sealing" }
+  { name: "Ecole Besancon", subtitle: "Baskinta Historic Campus", role: "Sika Tiles & Mastic Joint Sealing" }
 ];
 
 const pillars = [
@@ -69,7 +74,7 @@ const methodologySteps = [
   { id: "01", title: "Assessment", desc: "Deep site investigation and forensic sub-surface diagnostic reports of existing leak disasters." },
   { id: "02", title: "Specification", desc: "Drafting strict custom architectural details and material specifications for long-term building viability." },
   { id: "03", title: "Substrate Prep", desc: "High-level physical substrate conditioning, guaranteeing structural adhesion of the applied barriers." },
-  { id: "04", title: "Application", desc: "Certified, meticulous execution of liquid-applied systems, polymeric coatings, and bituminous membranes." },
+  { id: "04", title: "Application", desc: "Certified, meticulous execution of Sika Tiles systems, polymeric coatings, and bituminous membranes." },
   { id: "05", title: "Verification", desc: "Rigorous water flooding tests and joint inspections validating full structural envelope closure." },
   { id: "06", title: "Stewardship", desc: "Lifetime monitoring, post-completion audits, and mechanical damage diagnostics to preserve structural life." }
 ];

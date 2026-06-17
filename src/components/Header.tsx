@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence, useScroll, useSpring } from "motion/react";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/src/lib/utils";
 
@@ -17,6 +17,13 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
 
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 120,
+    damping: 30,
+    restDelta: 0.001
+  });
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -30,7 +37,12 @@ export default function Header() {
   }, [location]);
 
   return (
-    <header
+    <>
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-[4px] bg-gradient-to-r from-blue-deep via-blue to-gold-soft z-[300] shadow-[0_1px_8px_rgba(56,128,168,0.3)] pointer-events-none"
+        style={{ scaleX, transformOrigin: 'left' }}
+      />
+      <header
       className={cn(
         "fixed top-0 left-0 w-full z-[100] transition-all duration-500 py-6",
         isScrolled ? "bg-white/80 backdrop-blur-md py-4 border-b border-blue-mist shadow-sm" : "bg-transparent"
@@ -120,5 +132,6 @@ export default function Header() {
         )}
       </AnimatePresence>
     </header>
+    </>
   );
 }
